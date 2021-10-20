@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+<body class="dark" cz-shortcut-listen="true">
+  <div class="layout-wrapper" id="horizontal">
+    <!-- Header wrapper -->
+    <%- include("./partials/user-header-dashboard.ejs") %>
+    <!-- Header wrapper -->
+    <div class="content-wrapper">
+      <!-- begin::navigation -->
+      <%- include("./partials/aside.ejs")  %> 
+      <!-- end::navigation -->
+      <!-- Content wrapper -->
+        <!-- Content body -->
+        <div class="content-body">
+            <!-- Content -->
+            <div class="content" style="margin-left:90px;">
+
+
+                <div class="container">
+
+                    <div class="page-header d-flex justify-content-between">
+                        <h2><%= user.email %></h2>
+                    </div>
+
+
+                    <div class="col-xl-9">
+                        <div class="content-title">
+                            <h4>Profile Information</h4>
+                        </div>
+                        <% if(!profile.twoFA) { %>
+													<div class="row">
+														<div class="col-sm-12">
+															<p> Two factor Authentication is off
+															</p>
+														</div>
+														<form method="POST" accept-charset="utf-8" action="/user/profile">
+															<button type="submit" name="tfa" value="yes" class="btn btn-success btn-md">Turn ON</button>
+														</form>
+														<p></p>
+													</div>
+                        <% } else { %>
+													<div class="row">
+														<div class="col-sm-12">
+															<p> Two factor Authentication is on
+															</p>
+														</div>
+														<form method="POST" accept-charset="utf-8" action="/user/turnoff">
+															<button type="submit" name="tfa" value="yes" class="btn btn-danger btn-md">Turn OFF</button>
+														</form>
+														<p></p>
+													</div>
+                        <% } %>
+											</div>
+
+                        <div class="table-responsive" style="overflow: hidden; outline: currentcolor none medium;"
+                            tabindex="1">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th>Name</th>
+                                        <td><a href="javascript:void(0)"><%= profile.name %></a></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email</th>
+                                        <td><a href="javascript:void(0)"><%= profile.email %></a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>BTC Balance</th>
+                                        <td><a href="javascript:void(0)">$<%= currency.btc %>.00</a></td>
+                                    </tr>
+                                    <tr>
+                                        <th>ETH Balance</th>
+                                        <td><a href="javascript:void(0)">$<%= currency.eth %>.00</a></td>
+                                    </tr>
+                                    <tr>
+                                        <th>BCH Balance</th>
+                                        <td><a href="javascript:void(0)">$<%= currency.bch %>.00</a></td>
+                                    </tr>
+                                    <tr>
+                                        <th>LTC Balance</th>
+                                        <td><a href="javascript:void(0)">$<%= currency.ltc %>.00</a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>XRP Balance</th>
+                                        <td><a href="javascript:void(0)">$<%= currency.xrp %>.00</a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>USDT Balance</th>
+                                        <td><a href="javascript:void(0)">$<%= currency.usdt %>.00</a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Last Login</th>
+                                        <td><a href="javascript:void(0)"><%= lastlogin.createdAt %></a></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Joined on</th>
+                                        <td><a href="javascript:void(0)"><%= profile.dateCreated %></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./ Content -->
+
+                <!-- Footer -->
+                <footer class="content-footer d-print-none">
+                    <div>© 2021 Crypto Index Asset </div>
+
+                </footer>
+                <!-- ./ Footer -->
+            </div>
+            <!-- ./ Content body -->
+  </div>
+</body>
+<script src="/dashboard/vendors/bundle.js"></script>
+</html>

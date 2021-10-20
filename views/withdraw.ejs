@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+<body class="dark" cz-shortcut-listen="true">
+  <div class="layout-wrapper" id="horizontal">
+    <!-- Header wrapper -->
+    <%- include("./partials/user-header-dashboard.ejs") %>
+    <!-- Header wrapper -->
+    <div class="content-wrapper">
+      <!-- begin::navigation -->
+      <%- include("./partials/aside.ejs")  %> 
+      <!-- end::navigation -->
+      <!-- Content body -->
+      <div class="content-body">
+        <!-- Content -->
+        <div class="content" style="margin-left:90px;">
+
+
+
+
+            <div class="container">
+                <div class="page-header d-flex justify-content-between">
+                    <h2>Withdrawal</h2>
+                </div>
+								<div class="response p-4"></div>
+                <div class="content-title">
+                    <h6>Fill the form to request for withdrawal</h6>
+                </div>
+
+                <form method="post" accept-charset="utf-8" action="/user/withdraw">
+                    <div style="display:none;"><input type="hidden" name="_csrfToken" autocomplete="off"
+                            value="<%= csrfToken %>">
+                    </div>
+                    <input type="hidden" name="email" autocomplete="off" value="<%= email %>" id="email">
+                    <div class="form-group">
+                        <label for="amount">How much are you withdrawing?</label>
+                        <input type="number" name="amount" class="form-control" id="amount" placeholder="3000" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputState">Currency Type</label>
+                            <select required="" name="currencytype" id="currencytype" class="form-control">
+                                <option value="btc">Bitcoin</option>
+                                <option value="eth">Ethereum</option>
+                                <option value="bch">Bitcoin Cash</option>
+                                <option value="ltc">Litecoin</option>
+                                <option value="xrp">XRP</option>
+                                <option value="usdt">USDT</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputState">Where are you withdrawing to?</label>
+                            <select required="" name="withdrawaltype" id="withdrawaltype" class="form-control">
+                                <option value="wallet">Wallet</option>
+                                <option value="bank">Bank Account</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="bank_form" style="display: none;">
+                        <div class="form-group">
+                            <label for="bankname">Bank Name</label>
+                            <input type="text" name="bankname" class="form-control" id="bankname"
+                                placeholder="Capital bank">
+                        </div>
+                        <div class="form-group">
+                            <label for="bankaccountnumber">Bank Account Number</label>
+                            <input type="text" name="bankaccountnumber" class="form-control"
+                                id="bankaccountnumber" placeholder="64674848849">
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" name="city" class="form-control" id="city" placeholder="City">
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            <input type="text" name="country" class="form-control" id="country"
+                            placeholder="Canada">
+                        </div>
+                    </div>
+                    <div id="wallet_form">
+                        <div class="form-group">
+                            <label for="walletaddress">Wallet Address</label>
+                            <input type="text" name="walletaddress" class="form-control" id="walletaddress" placeholder="sb1263hdshu7Ffsaa67" required>
+                        </div>
+
+
+                        <div class="form-group" id="destinationtag_form">
+                            <label for="destinationtag">Destination Tag (for XRP wallets only)</label>
+                            <input type="text" name="destinationtag" class="form-control" id="destinationtag"
+                                placeholder="destination tag">
+                        </div>
+
+                    </div>
+
+                    <br>
+                    <br>
+                    <button type="submit" class="btn btn-warning btn-block btn-lg">Submit</button>
+                </form>
+
+            </div>
+
+            <script>
+                const withdrawalType = document.getElementById('withdrawaltype');
+                const walletForm = document.getElementById('wallet_form');
+                const bankForm = document.getElementById('bank_form');
+                //  const destinationTag = document.getElementById('destinationtag_form');
+
+                bankForm.style.display = "none"
+                //  destinationTag.style.display = "none"
+                withdrawalType.addEventListener('change', (val) => {
+                    if (withdrawalType.value === "bank") {
+                        walletForm.style.display = "none"
+                        bankForm.style.display = "block"
+                    } else if (withdrawalType.value === "wallet") {
+                        walletForm.style.display = "block"
+                        bankForm.style.display = "none"
+                    }
+                })
+                let form = document.querySelector("form")
+								let formAmount = document.querySelector("#amount")
+								let formDestTag = document.querySelector("#destinationtag")
+								let formAddress = document.querySelector("#walletaddress")
+								let response = document.querySelector(".response")
+								let email = document.querySelector("#email").value
+
+                form.addEventListener("submit", async (event) => {
+									event.preventDefault();
+
+									//get values
+									let amount = form.amount.value
+									let currencytype = form.currencytype.value
+									let withdrawaltype = form.withdrawaltype.value
+									let walletaddress = form.walletaddress.value
+									let destinationtag = form.destinationtag.value
+									let bankname = form.bankname.value
+									let bankaccountnumber = form.bankaccountnumber.value
+									let city = form.city.value
+									let country = form.country.value
+
+									try {
+										const res = await fetch(`/user/withdraw`, {
+											method: "POST",
+											body: JSON.stringify({ 
+												email, amount, currencytype, withdrawaltype, walletaddress, destinationtag, bankname, bankaccountnumber, city, country 
+											}),
+											headers: { 'Content-Type': 'application/json' }
+										})
+										const data = await res.json();
+										formAmount.value = ''
+										formAddress.value = ''
+										formDestTag.value = ''
+										
+										if (data.message) {
+											response.style.backgroundColor = "lightgreen"
+											response.style.color = "black"
+											response.textContent = data.message
+										}
+										if (data.error) {
+											response.style.backgroundColor = "red"
+          						            response.textContent = data.error
+										}
+									} catch(err) {
+										console.log(err)
+									}
+                })
+            </script>
+        </div>
+        <!-- ./ Content -->
+
+        <!-- Footer -->
+        <footer class="content-footer d-print-none">
+            <div>© 2021 Crypto Index Asset </div>
+        </footer>
+        <!-- ./ Footer -->
+    </div>
+    <!-- ./ Content body -->
+    </div>
+  </div>
+</body>
+<script src="/dashboard/vendors/bundle.js"></script>
+</html>

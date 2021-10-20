@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel || <%= title %></title>
+  <link rel="stylesheet" href="/bootstrap-5.1.0-dist/css/bootstrap.min.css">
+</head>
+<body>
+  <!-- Content body -->
+  <div class="container">
+    <% if(data.length > 0) { %>
+      <% data.forEach((datum) => { %>
+        <% if (datum.status) { %>
+          <div class="container d-inline-flex my-3">
+            <h6 class="mx-3 mt-2"><%= datum.email %> joined the app on <%= datum.createdAt %></h6>
+            <a class="btn btn-border-0 btn-outline-0 btn-danger mx-3" href="manage/<%= datum._id %>">Manage Account</a>
+            <a class="btn btn-border-0 btn-outline-0 btn-secondary me-3" href="manage/notification/<%= datum._id %>">Notification</a>
+          </div>
+        <% } %>
+      <% }) %>
+    <% } %>
+  </div>
+  <!-- Content body -->
+</body>
+</html>

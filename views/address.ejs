@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+<body class="dark">
+  <div class="layout-wrapper" id="horizontal">
+    <!-- Header wrapper -->
+    <%- include("./partials/user-header-dashboard.ejs") %>
+    <!-- Header wrapper -->
+    <div class="content-wrapper">
+      <!-- begin::navigation -->
+      <%- include("./partials/aside.ejs")  %> 
+      <!-- end::navigation -->
+      <!-- Content body -->
+      <div class="content-body">
+        <!-- Content -->
+        <div class="content" style="margin-left:90px;">
+<div class="container">
+
+<div class="content-title">
+    <h4>Wallet Address</h4>
+</div>
+
+
+<div style="display:flex; flex-wrap:wrap;">
+    <div class="card">
+        <img style="width:200px; margin:auto;" src="/dashboard/assets/media/image/bitcoin.jpg" class="card-img-top" alt="image">
+        <div class="card-body">
+            <h6 class="card-title">Bitcoin</h6>
+            <p class="card-text"><%= wallet.btc %></p>
+          
+        </div>
+    </div>
+
+    <div class="card">
+        <img style="width:200px; margin:auto;" src="/dashboard/assets/media/image/ethereum.jpg" class="card-img-top" alt="image">
+        <div class="card-body">
+            <h6 class="card-title">Ethereum</h6>
+            <p class="card-text"><%= wallet.eth %></p>
+           
+        </div>
+    </div>
+
+
+    <div class="card">
+        <img style="width:200px; margin:auto;" src="/dashboard/assets/media/image/bitcash.jpg" class="card-img-top" alt="image">
+        <div class="card-body">
+            <h6 class="card-title">Bitcoin Cash</h6>
+            <p class="card-text"><%= wallet.bch %></p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img style="width:200px; margin:auto;" src="/dashboard/assets/media/image/litecoin.jpg" class="card-img-top" alt="image">
+        <div class="card-body">
+            <h6 class="card-title">Litecoin</h6>
+            <p class="card-text"><%= wallet.ltc %></p>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <img style="width:200px; margin:auto;" src="/dashboard/assets/media/image/xrp.jpg" class="card-img-top" alt="image">
+        <div class="card-body">
+            <h6 class="card-title">XRP</h6>
+            <p class="card-text"><%= wallet.xrp %></p>
+            
+            <!-- <div>
+                <h6>Destination Tag: 100528224</h6>
+            </div> -->
+        </div>
+    </div>
+    
+    <div class="card">
+        <img style="width:200px; margin:auto;" src="/dashboard/assets/media/image/usdt.jpg" class="card-img-top" alt="image">
+        <div class="card-body">
+            <h6 class="card-title">USDT</h6>
+            <p class="card-text"><%= wallet.usdt %></p>
+        </div>
+    </div>
+
+
+</div>
+
+</div>
+        </div>
+        <!-- ./ Content -->
+
+        <!-- Footer -->
+        <footer class="content-footer d-print-none">
+            <div>© 2021 Crypto Index Market </div>
+          
+        </footer>
+        <!-- ./ Footer -->
+    </div>
+      <!-- ./ Content body -->
+    </div>
+  </div>
+  <div class="container" id="vertical" style="align-items:center; justify-content:center;flex-direction:column;height:100vh">
+    <img src="/public/images/logo-light.png" alt="logo" style="width:50%" class="img-responsive">
+    <p style="margin:15px 0; font-size:18px;">Please turn your device to landscape</p>
+</div>
+
+<!-- Main scripts -->
+<script src="/dashboard/vendors/bundle.js"></script>
+
+<!-- Dashboard scripts -->
+<script src="/dashboard/assets/js/examples/pages/file-dashboard.js"></script>
+
+<!-- App scripts -->
+<script src="/dashboard/assets/js/app.min.js"></script>
+
+
+<div class="colors"><span class="bg-primary"></span><span class="bg-secondary"></span><span class="bg-info"></span><span class="bg-success"></span><span class="bg-danger"></span><span class="bg-warning"></span></div></body></html>

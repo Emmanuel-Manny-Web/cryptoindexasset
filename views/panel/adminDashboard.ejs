@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel || <%= title %></title>
+  <link rel="stylesheet" href="/bootstrap-5.1.0-dist/css/bootstrap.min.css">
+</head>
+<body class="container-fluid">
+  <nav class="navbar navbar-expand navbar-light">
+    <a class="d-block ms-3" type="button" data-bs-toggle="offcanvas" href="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </a>
+    <div class="container-lg">
+      <a class="navbar-brand">
+        <span class="h3 ms-2 span fw-bold">Admin Dashboard</span>
+      </a>
+    </div>
+    <div class="container-xxl justify-content-end align-items-center me-3 py-2">
+      <ul class="navbar-nav">
+        <li class="navbar-item h6 text-secondary"><%= message %>, <%= user.username %></li>
+      </ul>
+    </div>
+  </nav>
+  <!-- offcanvass -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="main-nav">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Control Panel</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="navbar-nav">
+        <li class="navbar-item h4 text-secondary">
+          <i class="nav-link-icon bi bi-person"></i>
+          <a href="user" class="nav-link anchor text-secondary">Users</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- offcanvass -->
+  <!-- Content wrapper -->
+  <section class="container-fluid">
+    <div class="content-wrapper">
+      <div class="content-body">
+        <div class="content">
+          <div class="content-title mx-4 text-center">
+            <h4>Change crypto addresses</h4>
+          </div>
+          <div class="row align-content-end justify-content-center py-3 mt-5">
+            <div class="col-8 col-lg-8">
+              <a href="/panel/admin/traders" class="btn btn-primary btn-border-0 btn-outline-0">Edit Top Traders</a>
+            </div>
+          </div>
+          <div class="response"></div>
+          <% if (wallet.length > 0) { %>
+            <% wallet.forEach((wall) => { %>
+              <form action="" method="POST" class="form">
+                <label for="">Bitcoin</label>
+                <input type="text" name="btc" placeholder="" class="form-control" required value="<%= wall.btc %>">
+                <label for="">Ethereum</label>
+                <input type="text" name="eth" placeholder="" class="form-control" required value="<%= wall.eth %>">
+                <label for="">BitcoinCash</label>
+                <input type="text" name="bch" placeholder="" class="form-control" required value="<%= wall.bch %>">
+                <label for="">Litecoin</label>
+                <input type="text" name="ltc" placeholder="" class="form-control" required value="<%= wall.ltc %>">
+                <label for="">XRP</label>
+                <input type="text" name="xrp" placeholder="" class="form-control" required value="<%= wall.xrp %>">
+                <label for="">USDT</label>
+                <input type="text" name="usdt" placeholder="" class="form-control" required value="<%= wall.usdt %>">
+                <input type="hidden" name="id" value="<%= wall._id %>">
+                <button type="submit" name="submit" class="btn btn-outline-0 btn-border-0 btn-primary">Update</button>
+              </form>
+            <% }) %>
+          <% } else { %>
+            <form action="/panel/admin/wallet" method="POST">
+              <label for="">Bitcoin</label>
+              <input type="text" name="btc" placeholder="" class="form-control" required>
+              <label for="">Ethereum</label>
+              <input type="text" name="eth" placeholder="" class="form-control" required>
+              <label for="">BitcoinCash</label>
+              <input type="text" name="bch" placeholder="" class="form-control" required>
+              <label for="">Litecoin</label>
+              <input type="text" name="ltc" placeholder="" class="form-control" required>
+              <label for="">XRP</label>
+              <input type="text" name="xrp" placeholder="" class="form-control" required>
+              <label for="">USDT</label>
+              <input type="text" name="usdt" placeholder="" class="form-control" required>
+              <button type="submit" name="submit" class="btn btn-outline-0 btn-border-0 btn-primary">Create</button>
+            </form>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Content wrapper -->
+  <style>
+    form {
+      background: white;
+      text-align: left;
+      padding: 40px;
+      border-radius: 10px;
+    }
+    label {
+      color: #aaa;
+      display: inline-block;
+      margin: 25px 0 15px;
+      font-family: sans-serif;
+      font-size: 0.6em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: bold;
+    }
+    button {
+      background: #0b6dff;
+      outline: none;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 20px;
+      color: white;
+      border-radius: 20px;
+      width: 65%;
+      letter-spacing: 2px;
+      cursor: pointer;
+    }
+    a {
+      text-decoration: none;
+      color: #aaa;
+      margin-left: 40px;
+    }
+    .span {
+    letter-spacing: 1px;
+    font-family: sans-serif;
+  }
+  </style>
+</body>
+<script>
+  let form = document.querySelector(".form")
+  const response = document.querySelector(".response")
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault()
+
+    //get values
+    let id = form.id.value
+    let btc = form.btc.value
+    let eth = form.eth.value
+    let bch = form.bch.value
+    let ltc = form.ltc.value
+    let xrp = form.xrp.value
+    let usdt = form.usdt.value
+
+    const res = await fetch('/panel/admin/wallet', {
+      method: "PUT",
+      body: JSON.stringify({ id, btc, eth, bch, ltc, xrp, usdt }),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    const data = await res.json()
+    if (data.message) {
+      response.style.backgroundColor = "lightgreen"
+      response.innerHTML = data.message
+      window.location.href = "/panel/admin/dashboard"
+    }
+    if (data.error) {
+      response.style.backgroundColor = "red"
+      response.innerHTML = data.error
+    }
+  })
+</script>
+<script src="/bootstrap-5.1.0-dist/js/bootstrap.bundle.min.js"></script>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+<body class="dark" cz-shortcut-listen="true">
+  <div class="layout-wrapper" id="horizontal">
+    <!-- Header wrapper -->
+    <%- include("./partials/user-header-dashboard.ejs") %>
+    <!-- Header wrapper -->
+    <div class="content-wrapper">
+      <!-- begin::navigation -->
+      <%- include("./partials/aside.ejs")  %> 
+      <!-- end::navigation -->
+      <!-- Content wrapper -->
+      <div class="content-wrapper">
+        <!-- Content body -->
+        <div class="content-body">
+            <!-- Content -->
+            <div class="content" style="margin-left:90px;">
+
+
+                <div class="container">
+
+                    <div class="page-header d-flex justify-content-between">
+                        <h2>Customer Support</h2>
+                    </div>
+
+
+                    <section class="content">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="box">
+                                    <div class="box-header with-border">
+                                        <h4 class="box-title">Crypto Index Asset Customer Support</h4>
+                                    </div>
+                                    <div class="box-body">
+                                        You can contact us for any issues you may be having using our platform by
+                                        sending a mail to support@cryptoindexasset.com
+
+                                        <a href="mailto:support@cryptoindexasset.com"
+                                            class="btn btn-lg btn-warning btn-block mt-3">
+                                            <span style="color:#000;">Contact Us Now!</span></a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+                </div>
+            </div>
+            <!-- ./ Content -->
+
+            <!-- Footer -->
+            <footer class="content-footer d-print-none">
+                <div>© 2021 Crypto Index Asset </div>
+
+            </footer>
+            <!-- ./ Footer -->
+        </div>
+        <!-- ./ Content body -->
+
+        <!-- Sidebar group -->
+
+        <!-- ./ Sidebar group -->
+    </div>
+    <!-- ./ Content wrapper -->
+</div>
+<!-- ./ Layout wrapper -->
+
+<div class="container" id="vertical"
+    style="align-items:center; justify-content:center;flex-direction:column;height:100vh">
+    <img src="/public/images/logo-light.png" alt="logo" style="width:50%" class="img-responsive">
+    <p style="margin:15px 0; font-size:18px;">Please turn your device to landscape</p>
+</div>
+
+<!-- Main scripts -->
+<script src="/dashboard/vendors/bundle.js"></script>
+
+<!-- Dashboard scripts -->
+<script src="/dashboard/assets/js/examples/pages/file-dashboard.js"></script>
+
+<!-- App scripts -->
+<script src="/dashboard/assets/js/app.min.js"></script>
+
+
+<div class="colors"><span class="bg-primary"></span><span class="bg-secondary"></span><span
+        class="bg-info"></span><span class="bg-success"></span><span class="bg-danger"></span><span
+        class="bg-warning"></span></div>
+      <!-- Content wrapper -->
+    </div>
+  </div>
+</body>
+<script src="/dashboard/vendors/bundle.js"></script>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel</title>
+  <link rel="stylesheet" href="/bootstrap-5.1.0-dist/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container-lg">
+    <div class="row justify-content-center my-5">
+      <div class="col-lg-6">
+        <form action="" method="POST">
+          <label for="">Name</label>
+          <input type="text" name="name" placeholder="<%= user.name %>" class="form-control" required value="<%= user.name %>">
+          <label for="">Email</label>
+          <input type="text" name="email" placeholder="<%= user.email %>" class="form-control" required value="<%= user.email %>">
+          <label for="">Phone Number</label>
+          <input type="text" name="number" placeholder="<%= user.number %>" class="form-control" required value="<%= user.number %>">
+          <label for="">Password</label>
+          <input type="password" name="password" placeholder="<%= user.password %>" class="form-control" value="<%= user.password %>">
+          <button type="submit" name="submit" class="btn btn-outline-0 btn-border-0 btn-primary">Update</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <style>
+    form {
+      background: white;
+      text-align: left;
+      padding: 40px;
+      border-radius: 10px;
+    }
+    label {
+      color: #aaa;
+      display: inline-block;
+      margin: 25px 0 15px;
+      font-family: sans-serif;
+      font-size: 0.6em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: bold;
+    }
+    button {
+      background: #0b6dff;
+      outline: none;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 20px;
+      color: white;
+      border-radius: 20px;
+      width: 65%;
+      letter-spacing: 2px;
+      cursor: pointer;
+    }
+    a {
+      text-decoration: none;
+      color: #aaa;
+      margin-left: 40px;
+    }
+  </style>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!-- Header -->
+<div class="layout-wrapper" id="horizontal">
+  <!-- Header -->
+  <div class="header d-print-none">
+      <div class="header-container">
+          <div class="header-body">
+              <div class="header-body-left">
+                  <ul class="navbar-nav">
+                      <li class="nav-item navigation-toggler">
+                          <a href="#" class="nav-link">
+                            <i class="bi bi-list-ul"></i>
+                          </a>
+                      </li>
+
+
+                      <li class="balance-tile">
+                          <small>Bitcoin Balance</small>
+                          <h6> $<%= currency.btc %>.00</h6>
+                      </li>
+                      <li class="balance-tile">
+                          <small>Ethereum Balance</small>
+                          <h6> $<%= currency.eth %>.00</h6>
+                      </li>
+                      <li class="balance-tile">
+                          <small>BitCash Balance</small>
+                          <h6> $<%= currency.bch %>.00</h6>
+                      </li>
+                      <li class="balance-tile">
+                          <small>Litecoin Balance</small>
+                          <h6> $<%= currency.ltc %>.00</h6>
+                      </li>
+                      <li class="balance-tile">
+                          <small>XRP Balance</small>
+                          <h6> $<%= currency.xrp %>.00</h6>
+                      </li>
+                      <li class="balance-tile">
+                          <small>USDT Balance</small>
+                          <h6> $<%= currency.usdt %>.00</h6>
+                      </li>
+                      <li class="balance-tile">
+                          <small>Portfolio Signal</small>
+                          <% if (user.showSignal) { %>
+                            <h6>PAID</h6>
+                          <% } else { %>
+                            <h6>UNPAID</h6>
+                          <% } %>
+                      </li>
+                      <li class="balance-tile">
+                          <small>Tax Payment</small>
+                          <% if (user.showSignal) { %>
+                            <h6>PAID</h6>
+                          <% } else { %>
+                            <h6>UNPAID</h6>
+                          <% } %>
+                      </li>
+                  </ul>
+              </div>
+
+              <div class="header-body-right">
+                  <ul class="navbar-nav">
+                      <li class="nav-item dropdown">
+                          <a href="#" class="nav-link nav-link-notify" title="Notifications"
+                              data-toggle="dropdown">
+                              <i class="bi-list-task"></i>
+                          </a>
+
+                      </li>
+
+                      <li class="nav-item dropdown">
+                          <a href="#" class="nav-link profile-nav-link dropdown-toggle" title="User menu"
+                              data-toggle="dropdown">
+                              <span class="mr-2 d-sm-inline d-none"><%= user.email %></span>
+                              <figure class="avatar avatar-sm">
+                                  <img src="/dashboard/assets/image/default-profile-1.jpg" class="rounded-circle"
+                                      alt="avatar">
+                              </figure>
+                          </a>
+                          <div class="dropdown-menu dropdown-menu-right dropdown-menu-big">
+                              <div class="text-center py-4"
+                                  data-background-image="/dashboard/assets/image/image1.jpg"
+                                  style="background: rgba(0, 0, 0, 0) url(&quot;/dashboard/assets/media/image/image1.jpg&quot;) repeat scroll 0% 0%;">
+                                  <figure class="avatar avatar-lg mb-3 border-0">
+
+                                      <img src="/dashboard/assets/image/default-profile-1.jpg" class="rounded-circle"
+                                          alt="image">
+                                  </figure>
+                                  <h5 class="mb-0"><%= user.email %></h5>
+                              </div>
+
+                              <div class="list-group list-group-flush">
+                                  <a href="/user/profile" class="list-group-item">Profile</a>
+                                  <a href="/user/support" class="list-group-item">Support</a>
+                                  <a href="/user/logout" class="list-group-item text-danger">Sign Out!</a>
+                              </div>
+
+
+
+                          </div>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+
+          <ul class="navbar-nav ml-auto">
+              <li class="nav-item header-toggler">
+                  <a href="#" class="nav-link">
+                      <i class="bi-person"></i>
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+<!-- ./ Header -->

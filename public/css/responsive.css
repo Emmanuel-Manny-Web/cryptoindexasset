@@ -1,0 +1,718 @@
+/* Responsive styles
+================================================== */
+/* Large Devices, Wide Screens */
+/* Medium Devices, Desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+  /* Process */
+  .process-title {
+    font-size: 20px;
+  }
+
+  /* Sub Page
+  ============================= */
+  /* Service Boxed */
+  .ts-service-col.service-boxed {
+    min-height: 412px;
+  }
+
+  /* About */
+  .ts-about-video .video-text .column-title {
+    font-size: 35px;
+  }
+
+  .ts-about-video .video-text .column-title small {
+    margin-bottom: 20px;
+  }
+
+  .ts-about-video .video-text p {
+    padding-right: 0;
+  }
+
+  .ts-about-video .video-text .circle-list li {
+    font-size: 15px;
+  }
+
+  .ts-about-video .video-text {
+    padding-left: 30px;
+  }
+
+  /* Team */
+  .ts-team-classic .team-social-icons {
+    margin-bottom: 60px;
+    margin-top: 15px;
+  }
+
+  .ts-team-classic .ts-team-content .team-desc {
+    margin-top: 15px;
+  }
+
+  /* Footer */
+  .footer-social-icon li a {
+    margin-right: 5px;
+  }
+
+  /* Sub pages */
+  .single-product-items .product-name {
+    font-size: 19px;
+  }
+}
+/* Small Devices, Tablets */
+@media (min-width: 768px) and (max-width: 991px) {
+  /* Top Bar */
+  .top-info .info-icon {
+    margin-right: 15px;
+  }
+
+  /* Nav */
+  .header-default {
+    padding: 15px 0;
+  }
+
+  .nav-item > a {
+    padding: 15px 0;
+  }
+  .nav-item .dropdown-menu {
+    border: none;
+  }
+
+  .navbar-nav {
+    margin-top: 15px;
+  }
+
+  .nav-right {
+    padding-bottom: 5px;
+  }
+  .nav-right > div {
+    margin-left: 0;
+    margin-right: 20px;
+  }
+  .nav-right .nav-cart {
+    margin-right: 6px;
+  }
+
+  /* Navbar Absolute */
+  .header-absolute .navbar {
+    background: rgba(0, 0, 0, 0.84);
+    padding: 5px 30px;
+  }
+
+  .header-absolute .navbar .nav-right {
+    padding-bottom: 20px;
+  }
+
+  .absolute-navbar .nav-item > a {
+    padding: 10px 0;
+  }
+
+  .absolute-navbar .dropdown-menu.show {
+    background: none;
+    max-width: 300px;
+  }
+
+  .absolute-navbar .nav-item .dropdown-menu li a {
+    border: none;
+  }
+
+  .absolute-navbar .nav-item .dropdown-menu {
+    background: none;
+  }
+
+  /* Banner */
+  .banner-bg {
+    height: 1065px;
+  }
+
+  /* Countdown */
+  .ts-countdown-box {
+    margin-top: 40px;
+  }
+
+  /* Intro Area */
+  .ts-intro-text {
+    margin-top: 40px;
+  }
+
+  /* Feature Area */
+  .ts-feature {
+    margin-bottom: 40px;
+  }
+
+  .ts-feature.last {
+    margin-bottom: 0;
+  }
+
+  /* Convert Area */
+  .ts-currency-calculator {
+    margin-bottom: 40px;
+  }
+
+  /* Video Popup Area */
+  .video-popup {
+    min-height: 500px;
+  }
+
+  .ts-video.bg-dark-blue .video-popup {
+    min-height: auto;
+  }
+
+  .ts-video.bg-dark-blue .video-popup .video-play-btn {
+    -webkit-transform: translate(-50%, -25%);
+    transform: translate(-50%, -25%);
+  }
+
+  /* Process Area */
+  .ts-process-content {
+    margin-bottom: 90px;
+  }
+
+  .ts-process-content.last {
+    margin-bottom: 0;
+  }
+
+  /* Service Area */
+  .ts-service-pattern:after {
+    top: 10px;
+    width: 190px;
+    height: 140px;
+  }
+
+  /* News Area */
+  .ts-latest-post {
+    margin-bottom: 40px;
+  }
+
+  .ts-latest-post.last {
+    margin-bottom: 0;
+  }
+
+  /* Register Area */
+  .widget-title-classic {
+    margin-top: 40px;
+  }
+
+  .ts-signup {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .signup-button {
+    text-align: center;
+  }
+
+  /* Footer Area */
+  .credit-card {
+    margin-bottom: 40px;
+  }
+
+  .contact-us {
+    margin-bottom: 30px;
+  }
+
+  .currency-info {
+    margin-top: 30px;
+  }
+
+  .copyright-text {
+    text-align: center;
+  }
+
+  .footer-menu {
+    text-align: center;
+  }
+
+  .footer-menu li {
+    margin-right: 0;
+    padding: 0 13px;
+  }
+
+  /* Home 2 */
+  .vertical-timeline img {
+    display: none;
+  }
+
+  /* Sub pages
+  =================================== */
+  /* News Single */
+  blockquote {
+    padding-right: 20px;
+  }
+
+  .post-tags {
+    display: block;
+    text-align: center;
+    float: none;
+    width: 100%;
+  }
+
+  .post-social-icons {
+    text-align: center;
+    display: block;
+    width: 100%;
+    float: none;
+    margin-top: 15px;
+  }
+
+  .single-post-img {
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 40px;
+  }
+
+  /* News Left */
+  .post .post-body {
+    padding-left: 0;
+    margin-top: 40px;
+  }
+
+  .post .post-image {
+    float: none;
+  }
+
+  /* Service Single */
+  .ts-service-col.service-boxed {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 40px;
+  }
+
+  .ts-service-col.service-boxed .service-content .service-title {
+    font-size: 20px;
+  }
+
+  /* Team */
+  .ts-team-wrapper {
+    margin-bottom: 30px;
+  }
+
+  /* About Us */
+  .ts-about-us img {
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* Service */
+  .service-list-content {
+    margin-top: 30px;
+  }
+
+  .ts-currency-calculator.ts-calculator {
+    margin-top: 30px;
+  }
+
+  /* Shop */
+  .ts-product-details {
+    padding-left: 0;
+    margin-top: 40px;
+  }
+
+  .single-product-items {
+    min-height: 490px;
+  }
+
+  .single-product-items.border-box {
+    margin-bottom: 40px;
+  }
+
+  /* Investment */
+  .invest-img {
+    margin-top: 40px;
+  }
+
+  .chart-title-desc {
+    padding: 0;
+  }
+
+  /* Chart */
+  .chart-label.last {
+    max-width: 160px;
+    margin-left: auto;
+  }
+
+  /* Faq */
+  .ts-faq-classic span img {
+    display: block;
+  }
+}
+/* Small Devices Portrait */
+@media (max-width: 767px) {
+  /* Topbar */
+  .top-info {
+    text-align: center;
+  }
+
+  .top-info .info-icon {
+    margin-right: 10px;
+  }
+
+  .top-social-icon {
+    text-align: center;
+  }
+
+  /* Header */
+  .header-default {
+    padding: 15px 0;
+  }
+
+  /* Navbar */
+  .nav-item {
+    margin-right: 15px;
+  }
+  .nav-item > a {
+    padding: 10px 0;
+  }
+
+  .navbar-nav {
+    margin-top: 15px;
+  }
+
+  .nav-right .nav-cart {
+    margin-right: 6px;
+  }
+
+  .nav-right > div {
+    margin-left: 0;
+    margin-right: 20px;
+  }
+
+  /* Navbar Absolute */
+  .header-absolute .navbar {
+    background: rgba(0, 0, 0, 0.84);
+    padding: 5px 30px;
+  }
+
+  .header-absolute .navbar .nav-right {
+    padding-bottom: 20px;
+  }
+
+  .absolute-navbar .nav-item > a {
+    padding: 10px 0;
+  }
+
+  .absolute-navbar .dropdown-menu.show {
+    background: none;
+    max-width: 300px;
+  }
+
+  .absolute-navbar .nav-item .dropdown-menu li a {
+    border: none;
+  }
+
+  .absolute-navbar .nav-item .dropdown-menu {
+    background: none;
+  }
+
+  /* Banner */
+  .banner-bg {
+    height: 1140px;
+  }
+
+  /* Countdown */
+  .ts-countdown-box {
+    margin-top: 40px;
+  }
+
+  /* Slider */
+  .slide-title {
+    font-size: 20px;
+  }
+
+  .slide-subtitle {
+    font-size: 48px;
+    line-height: 48px;
+    margin-bottom: 20px;
+  }
+
+  /* Feature */
+  .ts-feature {
+    margin-bottom: 40px;
+  }
+
+  .ts-feature.last {
+    margin-bottom: 0;
+  }
+
+  /* Calculator */
+  .ts-currency-calculator {
+    margin-bottom: 40px;
+  }
+
+  /* Video Popup */
+  .video-popup {
+    min-height: 350px;
+  }
+
+  /* Facts Area */
+  .ts-facts-content {
+    margin-bottom: 40px;
+  }
+  .ts-facts-content h3 {
+    font-size: 18px;
+  }
+  .ts-facts-content p {
+    font-size: 32px;
+  }
+
+  .ts-facts-content.last {
+    margin-bottom: 0;
+  }
+
+  /* Process */
+  .ts-process-content {
+    margin-bottom: 90px;
+  }
+
+  .ts-process-content.last {
+    margin-bottom: 0;
+  }
+
+  /* Latest Post */
+  .ts-latest-post {
+    margin-bottom: 40px;
+  }
+
+  .ts-latest-post.last {
+    margin-bottom: 0;
+  }
+
+  /* Footer Area */
+  .widget-title-classic {
+    margin-top: 40px;
+  }
+
+  .ts-signup {
+    text-align: center;
+  }
+
+  .signup-button {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .credit-card {
+    margin-bottom: 40px;
+  }
+
+  .list-links {
+    margin-bottom: 30px;
+  }
+
+  .footer-contact-info .contact-us {
+    margin-bottom: 30px;
+  }
+  .footer-contact-info .contact-us.last {
+    margin-bottom: 0;
+  }
+
+  /* Footer Logo */
+  .footer-logo {
+    text-align: center;
+    display: block;
+    margin-bottom: 30px;
+  }
+
+  /* Copyright */
+  .copyright-text {
+    text-align: center;
+  }
+
+  .footer-menu {
+    text-align: center;
+  }
+  .footer-menu li {
+    margin-right: 0;
+    padding: 0 13px;
+  }
+
+  /* Home 2 */
+  .vertical-timeline img {
+    display: none;
+  }
+
+  /* Sub pages
+=================================== */
+  /* News Single */
+  blockquote {
+    padding-right: 20px;
+  }
+
+  .post-tags {
+    display: block;
+    text-align: center;
+    float: none;
+    width: 100%;
+  }
+
+  .post-social-icons {
+    text-align: center;
+    display: block;
+    width: 100%;
+    float: none;
+    margin-top: 15px;
+  }
+
+  .single-post-img {
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 40px;
+    width: 100%;
+  }
+
+  .author-box .author-img {
+    float: none !important;
+    text-align: center;
+  }
+
+  .author-box .author-info {
+    padding-left: 0;
+  }
+
+  .comment-avatar {
+    float: none !important;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+
+  .comment-body {
+    margin-left: 0;
+  }
+
+  .comments-reply {
+    margin-left: 0;
+  }
+
+  .comments-reply .comment-avatar {
+    margin-bottom: 20px;
+  }
+
+  /* News Left */
+  .post .post-body {
+    padding-left: 0;
+    margin-top: 40px;
+  }
+
+  .post .post-image {
+    float: none;
+  }
+
+  /* Service Single */
+  .ts-service-col.service-boxed {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 40px;
+  }
+
+  .ts-service-col.service-boxed .service-content .service-title {
+    font-size: 20px;
+  }
+
+  /* About Us */
+  .ts-about-us img {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .ts-team-wrapper {
+    margin-bottom: 10px;
+  }
+
+  .ts-about-video .video-text {
+    padding-left: 30px;
+  }
+
+  .ts-about-video .video-text p {
+    padding-right: 30px;
+  }
+
+  /* Service */
+  .service-list-content {
+    margin-top: 30px;
+  }
+
+  .ts-currency-calculator.ts-calculator {
+    margin-top: 30px;
+  }
+
+  /* Contact */
+  .contact-box.info-box {
+    width: 100%;
+    right: 0;
+  }
+
+  .contact-wrapper .contact-box {
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  .contact-box.form-box {
+    padding: 30px;
+  }
+
+  /* Shop */
+  .single-product-items.border-box {
+    margin-bottom: 40px;
+  }
+
+  /* Investment */
+  .invest-img {
+    margin-top: 40px;
+  }
+
+  .chart-title-desc {
+    padding: 0;
+  }
+
+  /* Chart */
+  .chart-gap {
+    margin-top: 40px;
+  }
+
+  /* Faq */
+  .ts-faq-classic span img {
+    display: block;
+  }
+}
+/* Extra Small Devices, Phones */
+@media (max-width: 479px) {
+  /* Column Title */
+  .column-title small {
+    line-height: 18px;
+  }
+
+  /* Banner */
+  .banner-bg {
+    height: 1230px;
+  }
+
+  /* Intro */
+  .ts-intro-text {
+    margin-top: 20px;
+  }
+
+  /* Calculator */
+  .ts-currency-calculator .btn {
+    margin-bottom: 15px;
+  }
+
+  /* Register */
+  .signup-button .btn {
+    margin-bottom: 10px;
+  }
+
+  /* Shop */
+  .product-add-to-chart-form form {
+    display: inline-block;
+  }
+
+  .product-add-to-chart-form form .product-quantity-btn {
+    margin-top: 30px;
+  }
+}
+/* Custom, iPhone Retina */
+@media (min-width: 320px) and (max-width: 478px) {
+  /* Banner */
+  .banner-bg {
+    height: 1340px;
+  }
+}

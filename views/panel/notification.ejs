@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel</title>
+    <link rel="stylesheet" href="/bootstrap-5.1.0-dist/css/bootstrap.min.css">
+  </head>
+<body>
+  <div class="container p-4">
+    <div class="response p-3"></div>
+    <input type="hidden" name="userid" id="userid" value="<%= user._id %>">
+    <% if (requests.length > 0) { %>
+      <% requests.forEach((request) => { %>
+        <div class="div my-3">
+          <% if (request.withdrawaltype === "wallet") { %>
+            <p class="h6 my-4"><%= request.email %> has requested a withdrawal of $<%= request.requestedAmount %> into his/her wallet address: <%= request.walletaddress %> dated on <%= request.requestDate %></p>
+          <% } else if(request.withdrawaltype === "bank") { %>
+            <p class="h6 my-4"><%= request.email %> has requested a withdrawal of $<%= request.requestedAmount %> into his or her bank account with bank name as <%= request.bankname %>, bank account number as <%= request.bankaccountnumber %> in his or her city <%= request.city %> in the country of <%= request.country %>dated on <%= request.requestDate %></p>
+          <% } %>
+          <div class="d-flex">
+            <form action="/panel/admin/approve/<%= request._id %>" method="POST" class="approve">
+              <% if (request.status === "pending") { %>
+                <button class="btn btn-success btn-border-0 btn-outline-0 me-3">Approve</button>
+              <% } else if (request.status === "approved") { %>
+                <a class="btn btn-success btn-border-0 btn-outline-0 me-3" href="javascript:void(0)">Approved</a>
+              <% } %>
+              <input type="hidden" name="id" value="<%= request._id %>" id="id">
+            </form>
+            <form action="/panel/admin/decline/<%= request._id %>" method="POST" class="decline">
+              <% if (request.status === "pending") { %>
+                <button class="btn btn-danger btn-border-0 btn-outline-0 me-3">Decline</button>
+              <% } else if (request.status === "declined") { %>
+                <a class="btn btn-danger btn-border-0 btn-outline-0 me-3" href="javascript:void(0)">Rejected</a>
+              <% } %>
+              <input type="hidden" name="id" value="<%= request._id %>" id="id">
+            </form>
+            <% if (request.status === "pending" || request.status === "approved") { %>
+              <a href="/panel/admin/manage/finance/credit/<%= user._id %>/<%= request._id %>" class="btn btn-warning btn-border-0 btn-outline-0">Debit</a>
+            <% } else if (request.status === "paid") { %>
+              <a class="btn btn-success btn-border-0 btn-outline-0 me-3" href="javascript:void(0)">Paid</a>
+            <% } %>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+        <div>
+          <p class="h6"><%= user.email %> has not made any withdrawal request.</p>
+        </div>
+    <% }  %>
+  </div>
+</body>
+<script>
+  let approve = document.querySelectorAll(".approve")
+  let decline = document.querySelectorAll(".decline")
+  let response = document.querySelector(".response")
+  let userid = document.querySelector("#userid").value
+
+  approve.forEach((app) => {
+    app.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      let approveid = app.querySelector("#id").value
+      console.log(approveid)
+
+      try {
+        const res = await fetch(`/panel/admin/approve/${approveid}`, {
+          method: "POST",
+          header: { 'Content-Type': 'application/json' }
+        })
+        const data = await res.json()
+        if (data.message) {
+          response.style.backgroundColor = "lightgreen"
+          response.textContent = data.message
+          window.location.href = `/panel/admin/manage/notification/${userid}`
+        }
+        if (data.error) {
+          response.style.backgroundColor = "red"
+          response.textContent = data.error
+        }
+      } catch(err) {
+        console.log(err)
+      }
+    })
+  })
+
+  decline.forEach((dec) => {
+    dec.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      let declineid = dec.id.value
+      console.log(declineid)
+
+      try {
+        const res = await fetch(`/panel/admin/decline/${declineid}`, {
+          method: "POST",
+          header: { 'Content-Type': 'application/json' }
+        })
+        const data = await res.json()
+        if (data.message) {
+          response.style.backgroundColor = "lightgreen"
+          response.textContent = data.message
+          window.location.href = `/panel/admin/manage/notification/${userid}`
+        }
+        if (data.error) {
+          response.style.backgroundColor = "red"
+          response.textContent = data.error
+        }
+      } catch(err) {
+        console.log(err)
+      }
+    })
+  })
+</script>
+</html>

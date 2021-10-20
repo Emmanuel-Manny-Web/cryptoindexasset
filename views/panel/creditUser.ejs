@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel</title>
+  <link rel="stylesheet" href="/bootstrap-5.1.0-dist/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container text-center pt-3">
+    <div class="py-3">
+      <nav class="navbar navbar-expand navbar-dark">
+        <ul class="navbar-nav">
+          <li class="navbar-item navigation-toggler">
+            <a href="#" class="nav-link">
+              <i class="bi bi-list-ul"></i>
+            </a>
+          </li>
+          <li class="navbar-item">
+              <small>Bitcoin Balance</small>
+              <h6> $<%= coins.btc %></h6>
+          </li>
+          <li class="navbar-item mx-3">
+              <small>Ethereum Balance</small>
+              <h6> $<%= coins.eth %></h6>
+          </li>
+          <li class="navbar-item mx-3">
+              <small>BitCash Balance</small>
+              <h6> $<%= coins.bch %></h6>
+          </li>
+          <li class="navbar-item mx-3">
+              <small>Litecoin Balance</small>
+              <h6> $<%= coins.ltc %></h6>
+          </li>
+          <li class="navbar-item mx-3">
+              <small>XRP Balance</small>
+              <h6> $<%= coins.xrp %></h6>
+          </li>
+          <li class="navbar-item mx-3">
+              <small>USDT Balance</small>
+              <h6> $<%= coins.usdt %></h6>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="error p-4" style="font-family: sans-serif;"></div>
+    <form action="<%= profile._id %>" method="POST" class="credit" style="margin-bottom: 20px;">
+      <input type="hidden" name="id" value="<%= profile._id %>">
+      <input type="hidden" name="payid" value="<%= payid._id %>">
+      <input type="text" name="email" value="<%= profile.email %>" class="form-control my-3">
+      <select name="currencytype" id="">
+        <option value="btc">Bitcoin</option>
+        <option value="eth">Ethereum</option>
+        <option value="bch">Bitcoin Cash</option>
+        <option value="ltc">Litecoin</option>
+        <option value="xrp">XRP</option>
+        <option value="usdt">USDT</option>
+      </select>
+      <input type="number" name="amount" placeholder="Amount" class="form-control my-3" id="input">
+      <button class="btn btn-success btn-outline-0">Credit</button>
+    </form>
+
+    <form action="<%= profile._id %>" method="POST" class="debit">
+      <input type="hidden" name="id" value="<%= profile._id %>">
+      <input type="hidden" name="payid" value="<%= payid._id %>">
+      <input type="text" name="email" value="<%= profile.email %>" class="form-control my-3">
+      <select name="currencytype" id="">
+        <option value="btc">Bitcoin</option>
+        <option value="eth">Ethereum</option>
+        <option value="bch">Bitcoin Cash</option>
+        <option value="ltc">Litecoin</option>
+        <option value="xrp">XRP</option>
+        <option value="usdt">USDT</option>
+      </select>
+      <input type="number" name="amount" placeholder="Amount" class="form-control my-3" id="input">
+      <button class="btn btn-danger btn-outline-0">Debit</button>
+    </form>
+  </div>
+  <style>
+    form {
+      background: white;
+      text-align: left;
+      padding: 40px;
+      border-radius: 10px;
+    }
+    label, select {
+      color: #aaa;
+      display: inline-block;
+      height: 25px;
+      width: 65%;
+      margin: 25px 0 15px;
+      font-family: sans-serif;
+      font-size: 0.6em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: bold;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 20px;
+      color: white;
+      border-radius: 20px;
+      width: 45%;
+      letter-spacing: 2px;
+      cursor: pointer;
+    }
+    a {
+      text-decoration: none;
+      color: #aaa;
+      margin-left: 40px;
+    }
+  </style>
+</body>
+<script>
+  let form = document.querySelector(".credit");
+  let error = document.querySelector(".error");
+  let debit = document.querySelector(".debit");
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault()
+
+    //reset errors
+    error.textContent = ''
+  
+    //get the values
+    const id = form.id.value
+    const payid = form.payid.value
+    const email = form.email.value
+    const amount = form.amount.value
+    const currencytype = form.currencytype.value
+    const input = document.querySelector("#input")
+    try {
+      const res = await fetch(`/panel/admin/manage/finance/credit/${id}/${payid}`, {
+        method: "POST",
+        body: JSON.stringify({ id, email, amount, currencytype }),
+        headers: { 'Content-Type': 'application/json' }
+      })
+      const data = await res.json()
+      input.value = ''
+      if (data.error) {
+        error.textContent = data.error
+      }
+      if (data.message) {
+        error.textContent = data.message
+        window.location.href = `/panel/admin/manage/finance/credit/${id}/${payid}`
+      }
+    } catch(err) {
+      console.log(err)
+    }
+  })
+  debit.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    //reset errors
+    error.textContent = ''
+
+    //get the values
+    const id = debit.id.value
+    const payid = debit.payid.value
+    const email = debit.email.value
+    const amount = debit.amount.value
+    const currencytype = debit.currencytype.value
+    const input = document.querySelector("#input")
+    try {
+      const res = await fetch(`/panel/admin/manage/finance/debit/${id}/${payid}`, {
+        method: "POST",
+        body: JSON.stringify({ id, email, amount, currencytype }),
+        headers: { 'Content-Type': 'application/json' }
+      })
+      const data = await res.json()
+      input.value = ''
+      if (data.error) {
+        error.textContent = data.error
+      }
+      if (data.message) {
+        error.textContent = data.message
+        window.location.href = `/panel/admin/manage/finance/credit/${id}/${payid}`
+      }
+    } catch(err) {
+      console.log(err)
+    }
+  })
+</script>
+</html>

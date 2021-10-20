@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel || <%= title %></title>
+  <link rel="stylesheet" href="/bootstrap-5.1.0-dist/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container-fluid text-center">
+    <form action="/panel/admin/traders" method="POST">
+      <label for="">Name of trader</label>
+      <input type="text" name="name" placeholder="e.g John Doe" class="form-control">
+      <label for="">Accuracy</label>
+      <input type="text" name="accuracy" class="form-control">
+      <label for="">Number of copiers</label>
+      <input type="number" name="copiers" class="form-control">
+      <button type="submit" name="submit" class="btn btn-outline-0 btn-border-0 btn-primary">Create</button>
+    </form>
+  </div>
+</body>
+<style>
+  form {
+    background: white;
+    text-align: left;
+    padding: 40px;
+    border-radius: 10px;
+  }
+  label {
+    color: #aaa;
+    display: inline-block;
+    margin: 25px 0 15px;
+    font-family: sans-serif;
+    font-size: 0.6em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+  }
+  button {
+    background: #0b6dff;
+    outline: none;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    color: white;
+    border-radius: 20px;
+    width: 65%;
+    letter-spacing: 2px;
+    cursor: pointer;
+  }
+  a {
+    text-decoration: none;
+    color: #aaa;
+    margin-left: 40px;
+  }
+  .span {
+    letter-spacing: 1px;
+    font-family: sans-serif;
+  }
+</style>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel || <%= title %></title>
+  <link rel="stylesheet" href="/bootstrap-5.1.0-dist/css/bootstrap.min.css">
+</head>
+<body class="p-4">
+  <div class="d-flex">
+    <div class="response"></div>
+    <%= user.email %>
+    <% if (user.showSignal) { %>
+      <a class="btn btn-outline-0 btn-border-0 btn-danger mx-3 toggle" data-doc="<%= user._id%>">
+        Turn off signal
+      </a>
+    <% } else { %>
+      <a class="btn btn-outline-0 btn-border-0 btn-success mx-3 toggle" data-doc="<%= user._id%>">
+        Turn on signal
+      </a>
+    <% } %>
+  <a class="btn btn-outline-0 btn-border-0 btn-primary me-3" href="finance/credit/<%= user._id %>">Edit Finance</a>
+  <a class="btn btn-outline-0 btn-border-0 btn-primary me-3" href="edit/<%= user._id %>">Change User Details</a>
+  <% if(!user.blocked) { %>
+    <a class="btn btn-outline-0 btn-border-0 btn-danger" data-doc="<%= user._id %>" id="block" href="#">Block User</a>
+  <% } else { %>
+    <a class="btn btn-outline-0 btn-border-0 btn-success" data-doc="<%= user._id %>" href="unblock/<%= user._id %>">Unblock User</a>
+  <% } %>
+  <a class="btn btn-outline-0 btn-border-0 btn-danger mx-3" href="delete/<%= user._id %>">Delete User</a>
+  </div>
+</body>
+<script>
+  let button = document.querySelector("a.toggle")
+  let block = document.getElementById("block")
+  let response = document.querySelector(".response")
+  button.addEventListener('click', (event) => {
+
+    let endpoint = `/panel/admin/manage/signal/${button.dataset.doc}`
+    fetch(endpoint, {
+      method: "PUT"
+    })
+    .then((response) => response.json())
+    .then((data) => window.location.href = data.redirect)
+    .catch(err => console.log(err))
+  })
+  block.addEventListener("click", async (event) => {
+    event.preventDefault();
+    let endpoint = `/panel/admin/manage/block/${block.dataset.doc}`
+    const res = await fetch(endpoint, {
+      method: "GET"
+    })
+    const data = await res.json()
+    if(data.message) {
+      response.style.backgroundColor = "lightgreen"
+      window.location.href = `/panel/admin/manage/${block.dataset.doc}`
+    }
+    if(data.error) {
+      response.style.backgroundColor = "red"
+      response.innerHTML = data.error
+    }
+  })
+</script>
+</html>

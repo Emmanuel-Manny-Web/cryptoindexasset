@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel || <%= title %></title>
+  <link rel="stylesheet" href="/bootstrap-5.1.0-dist/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container-lg">
+    <div class="row justify-content-center my-5">
+      <div class="col-lg-6">
+        <div class="error text-center"></div>
+        <form action="register" method="POST">
+          <label for="">Username</label>
+          <input type="text" name="username" placeholder="Username" class="form-control">
+          <label for="">Password</label>
+          <input type="password" name="password" placeholder="Password" class="form-control">
+          <button type="submit" name="submit" class="btn btn-outline-0 btn-border-0 btn-primary">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+<style>
+  form {
+    background: white;
+    text-align: left;
+    padding: 40px;
+    border-radius: 10px;
+  }
+  label {
+    color: #aaa;
+    display: inline-block;
+    margin: 25px 0 15px;
+    font-family: sans-serif;
+    font-size: 0.6em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+  }
+  button {
+    background: #0b6dff;
+    outline: none;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    color: white;
+    border-radius: 20px;
+    width: 65%;
+    letter-spacing: 2px;
+    cursor: pointer;
+  }
+  a {
+    text-decoration: none;
+    color: #aaa;
+    margin-left: 40px;
+  }
+</style>
+<script>
+  let form = document.querySelector("form")
+  let loginError = document.querySelector(".error")
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    //loginError
+    loginError.textContent = ''
+
+    let username = form.username.value
+    let password = form.password.value
+    
+    const res = await fetch('/panel/admin/register', {
+      method: "POST",
+      body: JSON.stringify({ username, password }),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    const data = await res.json()
+    if (data.message) {
+      location.assign("/panel/admin/dashboard")
+    }
+    if (data.error) {
+      loginError.style.color = "red"
+      loginError.textContent = data.error
+    }
+  })
+</script>
+</html>
