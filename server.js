@@ -10,7 +10,9 @@ const API = require('./controller/homeController')
 
 const app = express();
 const port = process.env.PORT || 3000
-app.use(enforce.HTTPS({ trustProtoHeader: true }))
+if (process.env.NODE_ENV === 'production' ) {
+  app.use(enforce.HTTPS({ trustProtoHeader: true }))
+}
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -21,7 +23,7 @@ const csrfProtection = csrf({ cookie: true });
 app.set('view engine', 'ejs')
 app.use(cookieParser())
 
-mongoose.connect(process.env.DB_URI, {
+mongoose.connect(process.env.DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(() => {
